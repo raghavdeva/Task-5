@@ -77,9 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
               EasyStep(
                 customStep: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Opacity(
+                child: _activeStep > 0 ? Icon(Icons.check, size: 60, color: Colors.white,):Opacity(
                   opacity: _activeStep >= 0 ? 1 : 0.3,
-                  child: Image.asset('assets/images/shopping.png'),
+                  child: Icon(Icons.looks_one_outlined, size: 50, color: Colors.black,),
                 ),
               ),
                 customTitle: const Text(
@@ -90,9 +90,9 @@ class _MyHomePageState extends State<MyHomePage> {
               EasyStep(
                 customStep: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Opacity(
+                  child: _activeStep > 1 ? Icon(Icons.check, size: 60, color: Colors.white,) :  Opacity(
                     opacity: _activeStep >= 1 ? 1 : 0.3,
-                    child: Image.asset('assets/images/home.png'),
+                    child: Center(child: Icon(Icons.looks_two_outlined, size: 50, color: Colors.black,)),
                   ),
                 ),
                 customTitle: const Text(
@@ -103,9 +103,9 @@ class _MyHomePageState extends State<MyHomePage> {
               EasyStep(
                 customStep: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Opacity(
+                  child: _activeStep > 2 ? Icon(Icons.check, size: 60, color: Colors.white,): Opacity(
                     opacity: _activeStep >= 2 ? 1 : 0.3,
-                    child: Image.asset('assets/images/payment.png'),
+                    child: Icon(Icons.looks_3_outlined, size: 50, color: Colors.black,),
                   ),
                 ),
                 customTitle: const Text(
@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: BorderRadius.circular(15),
                   child: Opacity(
                     opacity: _activeStep >= 3 ? 1 : 0.3,
-                    child: Image.asset('assets/images/check.png',),
+                    child: Icon(Icons.check, size: 60, color: Colors.white,),
                   ),
                 ),
                 customTitle: const Text(

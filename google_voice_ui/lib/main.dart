@@ -36,33 +36,38 @@ class _MyHomePageState extends State<MyHomePage>
 
 
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white12,
       appBar: AppBar(
-        title: Text('Google Voice UI', style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),),
+        backgroundColor: Colors.black38,
+        title: const Text(
+          'Voice Assistant UI',
+          style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 70,
-              height: 70,
+              width: 100,
+              height: 100,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
               ),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  overlayColor: Colors.black
+                  backgroundColor: Colors.black,
+                  overlayColor: Colors.black,
                 ),
                 onPressed: () {
                   showModalBottomSheet(
                     context: context,
-                    builder: (BuildContext context) {
-                      return const BottomSheetDialog();
+                    builder: (BuildContext ctx) {
+                      return const AnimatedBarDialog();
                     },
                   );
                 },
@@ -70,13 +75,15 @@ class _MyHomePageState extends State<MyHomePage>
                   padding: const EdgeInsets.all(0.5),
                   child: Image.asset(
                     'assets/icons-removebg-preview.png',
+                    height: 200,
+                    width: 200,
                   ),
                 ),
               ),
             ),
             const SizedBox(height: 15),
-            Text(
-              'Hey Google!',
+            const Text(
+              'Hello Google!',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w600,

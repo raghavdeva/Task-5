@@ -35,6 +35,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   late bool isvisible;
+  late Animation<double> _animation;
+
   final starShapes = [
     CircleShapeBorder(),
     StarShapeBorder(
@@ -101,6 +103,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       duration: Duration(seconds: 1),
     );
 
+    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(_controller);
     Animation<double> curve =
         CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic);
 
@@ -123,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
     listenable.value = Random().nextDouble() * 10;
 
-    _timer = Timer.periodic(const Duration(milliseconds: 100), (_) {
+    _timer = Timer.periodic(const Duration(milliseconds: 1000), (_) {
       listenable.value += 0.01;
     });
   }
@@ -175,22 +178,24 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                 (BuildContext context, value, Widget? child) {
                               return AnimatedRotation(
                                 turns: value,
-                                duration: const Duration(milliseconds: 100),
+                                duration: const Duration(milliseconds: 1000),
                                 child: ShaderMask(
                                     blendMode: BlendMode.srcIn,
                                     shaderCallback: (bounds) =>
                                         LinearGradient(colors: [
-                                          Colors.purpleAccent,
                                           Colors.blueAccent,
-                                        ]).createShader(
+                                          Colors.purpleAccent,
+
+                                        ],
+                                        stops: [_animation.value, _animation.value + 1.8 ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                          tileMode: TileMode.mirror,
+                                        ).createShader(
                                           Rect.fromLTWH(
                                               5, 5, bounds.width, bounds.height),
                                         ),
                                     child:
-                                        // Text(
-                                        //   'Ask Gemini',
-                                        //   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 50,),
-                                        // ),
                                         AnimatedBuilder(
                                             animation: _progressAnimation,
                                             builder: (BuildContext context,
